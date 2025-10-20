@@ -93,6 +93,6 @@ If you find our work useful, please cite our related paper:
 	volume = {14},
 	number = {1},
 	pages = {3217},
-	doi = {https://doi.org/10.1038/s41467-023-39031-1}
+	doi = {10.1038/s41467-023-39031-1}
 }
 ```
