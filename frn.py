@@ -28,7 +28,6 @@
 import torch
 import torch.nn as nn
 
-
 __all__ = ['FilterResponseNorm1d', 'FilterResponseNorm2d',
            'FilterResponseNorm3d']
 
