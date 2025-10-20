@@ -1,0 +1,6 @@
+monai==1.4.0
+biopython==1.85
+mrcfile==1.5.4 
+numba==0.61.2 
+einops==0.8.1 
+timm==1.0.19
