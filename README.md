@@ -87,7 +87,7 @@ If you find our work useful, please cite our related paper:
 ```
 @article{EMReady2023,
 	title = {Improvement of cryo-EM maps by simultaneous local and non-local deep learning},
-	author = {He J, Li T, Huang S Y},
+	author = {He J, Li T, Huang SY},
 	journal = {Nature communications},
 	year = {2023},
 	volume = {14},
