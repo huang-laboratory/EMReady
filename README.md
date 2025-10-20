@@ -38,7 +38,7 @@ conda env create -f environment.yml
 ```
 If conda fails, you could install the packages youself. Basically. you can first create an environment named **emready_env** by conda env create -n **emready_env** python=3.9, then install the packages listed in environment.yml using conda or pip.
 
-### 3. Set the executable file
+### 3. Set the EMReady.sh
 Set **"EMReady_home"** to the root directory of EMReady, for example, if EMReady is unzipped to "/home/data/EMReady", set `EMReady_home="/home/data/EMReady"`
 
 Set **"active"** to path of conda activator, for example
