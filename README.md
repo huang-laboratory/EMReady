@@ -24,7 +24,7 @@ Copyright (C) 2023 Jiahua He, Tao Li, Sheng-You Huang and Huazhong University of
 
 ## ⚡ Installation
 
-#### 1. Download EMReady
+### 1. Download EMReady
 
 Download EMReady via github
 ```
