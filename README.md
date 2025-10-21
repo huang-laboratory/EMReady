@@ -4,8 +4,7 @@
 
 Universal improvement of cryo-EM and cryo-ET maps  by fast quality-aware deep learning with Mamba
 
-<a href="#"><img src="https://img.shields.io/badge/Linux-Tested-yellow?logo=Linux&style=for-the-badge"/></a>  <a href="https://mit-license.org/"><img src="https://img.shields.io/badge/MiT-LICENSE-purple?logo=conventionalcommits&style=for-the-badge
-"/></a>
+<a href="#"><img src="https://img.shields.io/badge/Linux-Tested-yellow?logo=Linux&style=for-the-badge"/></a>  <a href="https://mit-license.org/"><img src="https://img.shields.io/badge/MIT-LICENSE-purple?logo=conventionalcommits&style=for-the-badge"/></a>
 
 <a href="https://pytorch.org/"><img src="https://img.shields.io/badge/PyTorch-v2.0-red.svg?logo=PyTorch&style=for-the-badge"/></a>   <a href="https://developer.nvidia.com/cuda-toolkit"><img src="https://img.shields.io/badge/CUDA-v11.7-green.svg?logo=Nvidia&style=for-the-badge"/></a>   <a href="https://python.org"><img src="https://img.shields.io/badge/python-v3.9-blue.svg?logo=python&style=for-the-badge"/></a>
 
