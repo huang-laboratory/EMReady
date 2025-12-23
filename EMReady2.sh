@@ -1,5 +1,3 @@
-#!/bin/bash
-
 # Copyright (C) 2025 Hong Cao, Yueting Zhu et al.
 
 # MIT License
@@ -12,10 +10,10 @@
 # to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 # copies of the Software, and to permit persons to whom the Software is
 # furnished to do so, subject to the following conditions:
-# 
+#
 # The above copyright notice and this permission notice shall be included in all
 # copies or substantial portions of the Software.
-# 
+#
 # THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 # IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 # FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -24,15 +22,15 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-# Users should properly set the following variables before running EMReady_mamba
+# Users should properly set the following variables before running EMReady2
 #######################################################################
-    EMReady_home=""
+    EMReady2_home=""
     activate=""
-    EMReady_env=""
+    EMReady2_env=""
 #######################################################################
 
-if [ ! -d "$EMReady_home" ]; then
-    echo "ERROR: Please set 'EMReady_home' to the absolute path of the directory where EMReady_mamba is installed"
+if [ ! -d "$EMReady2_home" ]; then
+    echo "ERROR: Please set 'EMReady2_home' to the absolute path of the directory where EMReady2 is installed"
     exit 1
 fi
 
@@ -41,20 +39,20 @@ if [ ! -f "$activate" ]; then
     exit 1
 fi
 
-. $activate $EMReady_env 2>/dev/null
+. $activate $EMReady2_env 2>/dev/null
 
-if [ "$CONDA_DEFAULT_ENV" != "$EMReady_env" ]; then
-    echo "ERROR: Cannot activate the conda environment '$EMReady_env'"
-    echo "Please set 'EMReady_env' to the name of EMReady_mamba's conda environment"
+if [ "$CONDA_DEFAULT_ENV" != "$EMReady2_env" ]; then
+    echo "ERROR: Cannot activate the conda environment '$EMReady2_env'"
+    echo "Please set 'EMReady2_env' to the name of EMReady2's conda environment"
     exit 1
 fi
 
-VERSION="1.0"
+VERSION="2.0.0"
 for arg in "$@"
 do
     case $arg in
         --version)
-        echo "EMReady_mamba version $VERSION"
+        echo "EMReady version $VERSION"
         exit 0
         ;;
     esac
@@ -62,7 +60,7 @@ done
 
 if [ $# -lt 2 ];then
         echo ""
-        echo "EMReady_mamba by Huang Lab @ HUST (https://github.com/huang-laboratory/EMReady-Mamba.git)"
+        echo "EMReady2 by Huang Lab @ HUST (http://huanglab.phys.hust.edu.cn/EMReady2)"
         echo ""
         echo "USAGE: `basename $0` in_map.mrc out_map.mrc [options]"
         echo ""
@@ -108,7 +106,7 @@ inverse_mask=""
 gpu_id="0"
 stride=16
 batch_size=16
-model_state_dict_dir=$EMReady_home"/model_state_dicts"
+model_state_dict_dir=$EMReady2_home"/model_state_dicts"
 
 while [ $# -gt 2 ];do
     case $3 in
@@ -146,4 +144,4 @@ while [ $# -gt 2 ];do
     shift
 done
 
-python ${EMReady_home}/pred.py -i $in_map -o $out_map -mp $model_state_dict_dir $mask_map -c $mask_contour $mask_str -r $mask_str_radius $mask_out $inverse_mask -g $gpu_id -b $batch_size -s $stride
+python ${EMReady2_home}/pred.py -i $in_map -o $out_map -mp $model_state_dict_dir $mask_map -c $mask_contour $mask_str -r $mask_str_radius $mask_out $inverse_mask -g $gpu_id -b $batch_size -s $stride
