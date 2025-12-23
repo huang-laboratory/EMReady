@@ -1,8 +1,8 @@
-# EMReady_mamba
+# EMReady2
 
 ## 📄 Overview
 
-Universal improvement of cryo-EM and cryo-ET maps  by fast quality-aware deep learning with Mamba
+Improvement of cryo-EM and cryo-ET maps by local quality-aware deep learning with Mamba
 
 <a href="#"><img src="https://img.shields.io/badge/Linux-Tested-yellow?logo=Linux&style=for-the-badge"/></a>  <a href="https://mit-license.org/"><img src="https://img.shields.io/badge/MIT-LICENSE-purple?logo=conventionalcommits&style=for-the-badge"/></a>
 
@@ -26,18 +26,18 @@ Copyright (C) 2025 Hong Cao, Yueting Zhu, Tao Li, Ji Chen, Jiahua He, Xinggang W
 
 ## ⚡ Installation
 
-### 1. Download EMReady
+### 1. Download EMReady2
 
-Download EMReady via github
+Download EMReady2 via github
 ```
-git clone https://github.com/huang-laboratory/EMReady-Mamba.git
-cd EMReady-Mamba
+git clone https://github.com/huang-laboratory/EMReady2.git
+cd EMReady2
 ```
 
 ### 2. Create conda environment
 ```
-conda create -n emready_mamba python==3.10
-conda activate emready_mamba
+conda create -n emready2 python==3.10
+conda activate emready2
 ```
 
 ### 3. Install packages
@@ -79,34 +79,34 @@ pip install causal_conv1d-1.4.0_xxx.whl
 pip install mamba_ssm-2.2.2_xxx.whl
 ```
 
-### 5. Set the EMReady.sh
-Set **"EMReady_home"** to the root directory of EMReady_mamba, for example, if EMReady is unzipped to "/home/data/EMReady-Mamba", set `EMReady_home="/home/data/EMReady-Mamba"`
+### 5. Set the EMReady2.sh
+Set **"EMReady2_home"** to the root directory of EMReady2, for example, if EMReady2 is unzipped to "/home/data/EMReady2", set `EMReady2_home="/home/data/EMReady2"`
 
 Set **"active"** to path of conda activator, for example
 ```
-activate="/home/data/anaconda3/bin/activate
+activate="/home/data/anaconda3/bin/activate"
 ```
 
-set **"EMReady_env"** to name of the python conda virtual environment that have all the required packages installed. An conda environment named "emready_env" will be created using the quick installation command, so `EMReady_env="emready_mamba"`. If the environment is built with a different name, users should modify **"EMReady_env"** accordingly.
+set **"EMReady2_env"** to name of the python conda virtual environment that have all the required packages installed. An conda environment named "emready2" will be created using the quick installation command, so `EMReady2_env="emready2"`. If the environment is built with a different name, users should modify **"EMReady2_env"** accordingly.
 
 
 
 ## 🎯 Usage
-Running EMReady_mamba is very straight forward with one command like
+Running EMReady2 is very straight forward with one command like
 ```
-EMReady.sh in_map.mrc out_map.mrc [Options]
+EMReady2.sh in_map.mrc out_map.mrc [Options]
 ```
 Required arguments:
 ```     
 in_map.mrc:  File name of input EM density map in MRC2014 format.
-out_map.mrc:  File name of the output EMReady-processed density map.
+out_map.mrc:  File name of the output EMReady2-processed density map.
 ```
 
 Options:
 ```
 -g  GPU_ID:  ID(s) of GPU devices to use. e.g. '0' for GPU #0, and '2,3,6' for GPUs #2, #3, and #6. (default: '0')
 -s  STRIDE:  The step of the sliding window for cutting the input map into overlapping boxes. Its value should be an integer within [16,48]. (default: 16)
--b  BATCH_SIZE:  Number of boxes input into EMReady_mamba in one batch. (default: 16)
+-b  BATCH_SIZE:  Number of boxes input into EMReady2 in one batch. (default: 16)
 -m  MASK_MAP:  Input mask map in MRC2014 format. (default: None)
 -c  MASK_MAP_CONTOUR:  Set the contour level of the mask. (default: 0.0)
 -p  MASK_STRUCTURE:  Input structure mask files in PDB or CIF format (default: None)
@@ -120,8 +120,8 @@ Options:
 
 If you find our work useful, please cite our related paper:
 ```
-@article{EMReady_mamba_2025,
-	title = {Universal improvement of cryo-EM and cryo-ET maps  by fast quality-aware deep learning with Mamba},
+@article{EMReady2,
+	title = {Improvement of cryo-EM and cryo-ET maps by local quality-aware deep learning with Mamba},
 	author = {Hong Cao, Yueting Zhu, Tao Li, Ji Chen, Jiahua He, Xinggang Wang, Sheng-You Huang},
 	journal = {In submission},
 	year = {2025},

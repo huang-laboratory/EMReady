@@ -21,9 +21,9 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
-
 import torch
 import torch.nn as nn
+
 from einops import rearrange
 from monai.networks.layers.utils import get_act_layer, get_norm_layer
 from frn import FilterResponseNorm3d

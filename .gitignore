@@ -1,0 +1,41 @@
+# ===  package and conda ===
+.venv/
+venv/
+env/
+Pipfile.lock
+
+# === build ===
+build/
+dist/
+*.egg-info/
+*.egg
+
+# === test and log ===
+.coverage
+htmlcov/
+*.log
+*.sqlite3
+*.out
+log/
+logs/
+
+# === IDE and editor==
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# === operating system ===
+.DS_Store
+Thumbs.db
+desktop.ini
+
+
+# === Python ===
+__pycache__/
+*.py[cod]
+*$py.class
+.python-version
+.pytest_cache/
+.mypy_cache/
