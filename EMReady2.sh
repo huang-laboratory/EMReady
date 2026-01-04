@@ -1,3 +1,4 @@
+#!/bin/bash
 # Copyright (C) 2025 Hong Cao, Yueting Zhu et al.
 
 # MIT License
