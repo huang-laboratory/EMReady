@@ -117,6 +117,15 @@ Options:
 ```
 
 
+## 🔥Trouble shooting
+- **model weights :** Due to the limitations imposed by GitHub on large files, if the download of the model weights fails, you can obtain the individual model weights file from our laboratory website.
+```
+cd ${EMReady2_home}/model_state_dicts/
+wget http://huanglab.phys.hust.edu.cn/EMReady2/model_state_dicts/model_1p0.pt
+wget http://huanglab.phys.hust.edu.cn/EMReady2/model_state_dicts/model_0p6.pt
+```
+
+
 ## 📝 Citation
 
 If you find our work useful, please cite our related paper:
