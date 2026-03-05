@@ -6,7 +6,7 @@ Improvement of cryo-EM and cryo-ET maps by local quality-aware deep learning wit
 
 <a href="#"><img src="https://img.shields.io/badge/Linux-Tested-yellow?logo=Linux&style=for-the-badge"/></a>  <a href="https://mit-license.org/"><img src="https://img.shields.io/badge/MIT-LICENSE-purple?logo=conventionalcommits&style=for-the-badge"/></a>
 
-<a href="https://pytorch.org/"><img src="https://img.shields.io/badge/PyTorch-v2.3.1-red?logo=PyTorch&style=for-the-badge"/></a>   <a href="https://developer.nvidia.com/cuda-toolkit"><img src="https://img.shields.io/badge/CUDA-v11.8-green?logo=Nvidia&style=for-the-badge"/></a>   <a href="https://python.org"><img src="https://img.shields.io/badge/python-v3.10-blue?logo=python&style=for-the-badge"/></a>
+<a href="https://pytorch.org/"><img src="https://img.shields.io/badge/PyTorch-v2.4.1-red?logo=PyTorch&style=for-the-badge"/></a>   <a href="https://developer.nvidia.com/cuda-toolkit"><img src="https://img.shields.io/badge/CUDA-v11.8-green?logo=Nvidia&style=for-the-badge"/></a>   <a href="https://python.org"><img src="https://img.shields.io/badge/python-v3.10-blue?logo=python&style=for-the-badge"/></a>
 
 Copyright (C) 2025 Hong Cao, Yueting Zhu, Tao Li, Ji Chen, Jiahua He, Xinggang Wang, Sheng-You Huang and Huazhong University of Science and Technology
 
@@ -42,7 +42,7 @@ conda activate emready2
 
 ### 3. Install packages
 ```
-pip install torch==2.3.1 torchvision==0.18.1 torchaudio==2.3.1 --index-url https://download.pytorch.org/whl/cu118
+pip install torch==2.4.1 torchvision==0.19.1 torchaudio==2.4.1 --index-url https://download.pytorch.org/whl/cu118
 pip install -r requirements.txt
 ```
 
@@ -53,13 +53,13 @@ pip install -r requirements_mamba.txt
 
 If **requirements_mamba.txt** fails to install, possibly due to network fluctuations, you can also check the emready2 environment using the following two lines of code and download the corresponding version from the official website.
 
-**Check the torch version and cuda version**
+**Check the torch version and cuda version**   
 ```python
 python -c "import torch; print(torch.__version__); print(torch.version.cuda)"
 ```
 Expected Output:
 ```
-2.3.1+cu118
+2.4.1+cu118
 11.8
 ```
 
@@ -71,8 +71,8 @@ Possible Output:
 ```
 False or True
 ```
-Download **causal-conv1d==1.4.0** from [https://github.com/Dao-AILab/causal-conv1d/releases](https://github.com/Dao-AILab/causal-conv1d/releases)
-Download **mamba-ssm==2.2.2** from [https://github.com/state-spaces/mamba/releases](https://github.com/state-spaces/mamba/releases)
+Download **causal-conv1d==1.4.0** from [https://github.com/Dao-AILab/causal-conv1d/releases/tag/v1.4.0](https://github.com/Dao-AILab/causal-conv1d/releases/tag/v1.4.0)
+Download **mamba-ssm==2.2.2** from [https://github.com/state-spaces/mamba/releases/tag/v2.2.0](https://github.com/state-spaces/mamba/releases/tag/v2.2.0)
 
 Manually install it locally in the "emready2" environment, replacing 'xxx' with the corresponding version.
 ```

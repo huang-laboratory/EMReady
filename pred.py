@@ -25,10 +25,14 @@ import os
 import torch
 import argparse
 import warnings
+warnings.filterwarnings("ignore")
+warnings.filterwarnings("ignore", category=FutureWarning)
 import numpy as np
+
 from Bio.PDB import PDBParser
 from Bio.PDB import MMCIFParser
 from Bio import BiopythonWarning
+warnings.simplefilter("ignore", BiopythonWarning)
 from torch import FloatTensor as FT
 from torch.autograd import Variable as V
 from utils import (
@@ -42,9 +46,6 @@ from utils import (
 )
 
 from bimcunet import BiMCUnet
-
-warnings.filterwarnings("ignore")
-warnings.simplefilter("ignore", BiopythonWarning)
 
 
 def get_args():

@@ -2,7 +2,7 @@
 
 import torch
 import torch.nn.functional as F
-from torch.cuda.amp import custom_bwd, custom_fwd
+from torch.amp import custom_bwd, custom_fwd
 
 from einops import rearrange, repeat
 
@@ -217,7 +217,7 @@ def selective_scan_ref(
 class MambaInnerFnNoOutProj(torch.autograd.Function):
 
     @staticmethod
-    @custom_fwd
+    @custom_fwd(device_type='cuda')
     def forward(
         ctx,
         xz,
@@ -328,7 +328,7 @@ class MambaInnerFnNoOutProj(torch.autograd.Function):
         return out_z
 
     @staticmethod
-    @custom_bwd
+    @custom_bwd(device_type='cuda')
     def backward(ctx, dout):
         # dout: (batch, seqlen, dim)
         (
@@ -457,7 +457,7 @@ class MambaInnerFnNoOutProj(torch.autograd.Function):
 class MambaInnerFn(torch.autograd.Function):
 
     @staticmethod
-    @custom_fwd
+    @custom_fwd(device_type='cuda')
     def forward(
         ctx,
         xz,
@@ -582,7 +582,7 @@ class MambaInnerFn(torch.autograd.Function):
         )
 
     @staticmethod
-    @custom_bwd
+    @custom_bwd(device_type='cuda')
     def backward(ctx, dout):
         # dout: (batch, seqlen, dim)
         assert (
@@ -722,7 +722,7 @@ class MambaInnerFn(torch.autograd.Function):
 class BiMambaInnerFn(torch.autograd.Function):
 
     @staticmethod
-    @custom_fwd
+    @custom_fwd(device_type='cuda')
     def forward(
         ctx,
         xz,
@@ -863,7 +863,7 @@ class BiMambaInnerFn(torch.autograd.Function):
         )
 
     @staticmethod
-    @custom_bwd
+    @custom_bwd(device_type='cuda')
     def backward(ctx, dout):
         # dout: (batch, seqlen, dim)
         (
