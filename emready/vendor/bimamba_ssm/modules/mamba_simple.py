@@ -16,7 +16,7 @@ except ImportError:
     causal_conv1d_fn, causal_conv1d_update = None
 
 try:
-    from bimamba_ssm.ops.selective_scan_interface import (
+    from emready.vendor.bimamba_ssm.ops.selective_scan_interface import (
         selective_scan_fn,
         mamba_inner_fn,
         bimamba_inner_fn,
@@ -30,13 +30,13 @@ except ImportError:
         None,
     )
 
-try:
-    from bimamba_ssm.ops.triton.selective_state_update import selective_state_update
-except ImportError:
-    selective_state_update = None
+# EMReady uses the Mamba block for full-volume inference only. Autoregressive
+# state updates are not used, and importing the upstream helper pulls in the
+# top-level mamba_ssm package plus unrelated text-generation dependencies.
+selective_state_update = None
 
 try:
-    from bimamba_ssm.ops.triton.layer_norm import RMSNorm, layer_norm_fn, rms_norm_fn
+    from emready.vendor.bimamba_ssm.ops.triton.layer_norm import RMSNorm, layer_norm_fn, rms_norm_fn
 except ImportError:
     RMSNorm, layer_norm_fn, rms_norm_fn = None, None, None
 

@@ -1,0 +1,25 @@
+# Install notes for the `emready` environment.
+
+conda create -n emready python=3.10 -y
+conda activate emready
+
+# Core packages used by the current EMReady 3D inference command.
+pip install numpy==1.26.4
+pip install scipy==1.13
+pip install mrcfile==1.5.4
+pip install biopython==1.86
+pip install einops==0.8.2
+pip install monai==1.4.0
+pip install numba==0.64.0 llvmlite==0.46.0
+pip install transformers==4.57.3
+
+# PyTorch CUDA 11.8.
+pip install torch==2.4.1 torchvision==0.19.1 torchaudio==2.4.1 --index-url https://download.pytorch.org/whl/cu118
+
+# Mamba runtime wheels known to work with torch 2.4.1 + CUDA 11.8.
+pip install /path/to/causal_conv1d-1.4.0+cu118torch2.4cxx11abiFALSE-cp310-cp310-linux_x86_64.whl
+pip install /path/to/mamba_ssm-2.2.0+cu118torch2.4cxx11abiFALSE-cp310-cp310-linux_x86_64.whl
+
+# Install the EMReady command from the repository root.
+cd /path/to/EMReady2
+pip install -e . --no-deps

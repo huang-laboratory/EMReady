@@ -26,8 +26,8 @@ import torch.nn as nn
 
 from einops import rearrange
 from monai.networks.layers.utils import get_act_layer, get_norm_layer
-from frn import FilterResponseNorm3d
-from bimamba_ssm import Mamba
+from emready.models.frn import FilterResponseNorm3d
+from emready.vendor.bimamba_ssm import Mamba
 
 
 class MambaLayer(nn.Module):
