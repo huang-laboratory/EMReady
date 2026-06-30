@@ -1,5 +1,7 @@
 __pycache__/
 *.py[cod]
+*.egg-info/
+*.egg
 
 model_weights/model_0p6.pt
 model_weights/model_1p0.pt

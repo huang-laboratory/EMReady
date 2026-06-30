@@ -20,7 +20,6 @@ Copyright (C) 2025 Hong Cao, Yueting Zhu, Tao Li, Ji Chen, Jiahua He, Xinggang W
 
 EMReady2 was updated to fix the compatibility issues between torch and mamba.
 Specifically, the runtime environment was upgraded from torch 2.3 to torch 2.4.1.
-
 </details>
 
 <details>
@@ -37,7 +36,12 @@ methods     mfsc0.5   umfsc0.5   qscore   ccbox   ccmask   ccpeaks   qscore_mc
 average     4.589     4.647      0.493    0.859   0.748    0.717     0.557
 gaussian    4.543     4.601      0.494    0.861   0.750    0.720     0.558
 ```
+</details>
 
+<details>
+	<summary>2026/06/30. Improved the readability of the main program.</summary>
+
+Make the options parameter of EMReady2 compatible with the same usage as that of EMReady.
 </details>
 
 
@@ -52,30 +56,40 @@ gaussian    4.543     4.601      0.494    0.861   0.750    0.720     0.558
 
 ## ⚡ Installation
 
-### 1. Download EMReady2
+<details>
+	<summary>1. Download EMReady2</summary>
 
-Download EMReady2 via GitHub
 ```bash
 git clone https://github.com/huang-laboratory/EMReady2.git
 cd EMReady2
 ```
+</details>
 
-### 2. Create conda environment
+<details>
+	<summary>2. Create conda environment</summary>
+
 ```bash
 conda create -n emready python==3.10
 conda activate emready
 ```
+</details>
 
-### 3. Install packages
+<details>
+	<summary>3. Install packages</summary>
+
 ```bash
 pip install torch==2.4.1 torchvision==0.19.1 torchaudio==2.4.1 --index-url https://download.pytorch.org/whl/cu118
 pip install -r requirements.txt
 ```
+</details>
 
-### 4. Install mamba
+<details>
+	<summary>4. Install mamba</summary>
+
 ```bash
 pip install -r requirements_mamba.txt
 ```
+
 
 If **requirements_mamba.txt** fails to install, possibly due to network fluctuations, you can also check the emready environment using the following two lines of code and download the corresponding version from the official website.
 
@@ -105,15 +119,19 @@ Manually install it locally in the "emready" environment, replacing 'xxx' with t
 pip install causal_conv1d-1.4.0_xxx.whl
 pip install mamba_ssm-2.2.0_xxx.whl
 ```
+</details>
 
-### 5. Install EMReady2
+<details>
+	<summary>5. Install EMReady2</summary>
 
 EMReady2 is now used as an installable Python package in the conda environment:
 ```bash
 pip install -e . --no-deps
 ```
+</details>
 
-### 6. Download model weights
+<details>
+	<summary>6. Download model weights</summary>
 
 Due to the limitations imposed by GitHub on large files, users should download the trained model weights separately and put them under **model_weights/**:
 
@@ -126,8 +144,7 @@ http://huanglab.phys.hust.edu.cn/EMReady2
 model_weights/model_0p6.pt
 model_weights/model_1p0.pt
 ```
-
-If `--model_path` (`-bmp`) is not provided, EMReady2 will automatically choose one of these two files according to the voxel size of the input map.
+</details>
 
 
 ## 🎯 Usage
@@ -145,31 +162,22 @@ out_map.mrc:  File name of the output EMReady2-processed density map.
 
 Common options:
 ```
--bmp MODEL_PATH:           Path to a manually specified model weight file (.pt). If omitted, EMReady2 searches model_weights/model_1p0.pt or model_weights/model_0p6.pt automatically.
--bg GPU_ID:                ID(s) of GPU devices to use. e.g. '0' for GPU #0, and '2,3,6' for GPUs #2, #3, and #6. (default: '0')
--bs STRIDE:                The step of the sliding window for cutting the input map into overlapping boxes. Its value should be an integer within [6,64]. (default: 16)
--bb BATCH_SIZE:            Number of boxes input into EMReady2 in one batch. (default: 16)
--mm MASK_MAP:              Input mask map in MRC2014 format. (default: None)
--mc MASK_MAP_CONTOUR:      Set the contour level of the mask. (default: 0.0)
--ms MASK_STRUCTURE:        Input structure mask files in PDB or CIF format. (default: None)
--mr MASK_STRUCTURE_RADIUS: Zone radius in angstroms. (default: 4.0)
--mo MASK_OUT_PATH:         File path of the output binary mask map. (default: None)
--mi / --inverse:           Inverse the mask.
--bbm BLEND_MODE:           Patch aggregation weighting mode. Use gaussian for Gaussian patch blending. (default: gaussian)
--bgs GAUSSIAN_SIGMA_SCALE: Gaussian sigma scale used when gaussian blending is enabled. (default: 0.5)
+-g GPU_ID:  ID(s) of GPU devices to use. e.g. '0' for GPU #0, and '2,3,6' for GPUs #2, #3, and #6. (default: '0')
+-s STRIDE:  The step of the sliding window for cutting the input map into overlapping boxes. Its value should be an integer within [6,64]. (default: 16)
+-b BATCH_SIZE:  Number of boxes input into EMReady2 in one batch. (default: 16)
+-m, -mm MASK_MAP:  Input mask map in MRC2014 format. (default: None)
+-c, -mc MASK_MAP_CONTOUR:  Set the contour level of the mask. (default: 0.0)
+-p, -ms MASK_STRUCTURE:  Input structure mask files in PDB or CIF format. (default: None)
+-r, -mr MASK_STRUCTURE_RADIUS:  Zone radius in angstroms. (default: 4.0)
+-mo MASK_OUT_PATH:  File path of the output binary mask map. (default: None)
+--inverse_mask:  Invert mask keep/remove logic for --mask_map or --mask_str. (default: False)
 ```
 
 Examples:
 ```bash
-emready input.mrc output.mrc
-```
-
-```bash
-emready input.mrc output.mrc -bmp /path/to/model.pt -bg 0 -bb 16 -bs 16
-```
-
-```bash
-emready input.mrc output_gaussian.mrc --blend_mode gaussian
+emready input.mrc output.mrc -g 0 -b 128 -s 16
+emready input.mrc output.mrc -m mask.mrc -c 0.5
+emready input.mrc output.mrc -p struct.pdb -r 4.0 --inverse_mask
 ```
 
 
@@ -177,7 +185,6 @@ emready input.mrc output_gaussian.mrc --blend_mode gaussian
 
 - **model weights:** If EMReady2 reports that no default model weight is found, please check that the downloaded files are placed at
   `model_weights/model_0p6.pt` and `model_weights/model_1p0.pt`.
-- **manual model path:** Users can always override the automatic selection by setting `--model_path` / `-bmp`.
 
 
 ## 📝 Citation
@@ -185,9 +192,10 @@ emready input.mrc output_gaussian.mrc --blend_mode gaussian
 If you find our work useful, please cite our related paper:
 ```
 @article{EMReady2,
-	title = {EMReady2: Improvement of cryo-EM and cryo-ET maps by local quality-aware deep learning with Mamba},
+	title = {EMReady2: improvement of cryo-EM and cryo-ET maps by local quality-aware deep learning with Mamba},
 	author = {Hong Cao, Yueting Zhu, Tao Li, Ji Chen, Jiahua He, Xinggang Wang, Sheng-You Huang},
-	journal = {In submission},
-	year = {2025},
+	journal = {Nature Communications},
+	year = {2026},
+	doi = {https://doi.org/10.1038/s41467-026-71794-1},
 }
 ```
