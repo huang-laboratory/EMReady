@@ -42,9 +42,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog="emready",
         description=(
-            "EMReady2 3D map inference command. "
-            "You must provide input and output either via positional arguments "
-            "or via --input/--output."
+            "EMReady2 3D map inference command."
         ),
         formatter_class=argparse.RawTextHelpFormatter,
     )
@@ -64,12 +62,13 @@ def build_parser() -> argparse.ArgumentParser:
             "required (unless provided by --output)."
         ),
     )
-    parser.add_argument("--version", action="version", version=f"EMReady {emready.__version__}")
+    parser.add_argument("--version", action="version", version=f"EMReady v{emready.__version__}")
 
     basic_group = parser.add_argument_group("Basic Arguments")
     basic_group.add_argument(
         "--input",
         "-bi",
+        "-i",
         dest="in_map_opt",
         help=(
             "Input EM density map in MRC2014 format (.mrc/.map). "
@@ -79,6 +78,7 @@ def build_parser() -> argparse.ArgumentParser:
     basic_group.add_argument(
         "--output",
         "-bo",
+        "-o",
         dest="out_map_opt",
         help=(
             "Output processed density map in MRC2014 format (.mrc). "
@@ -88,16 +88,15 @@ def build_parser() -> argparse.ArgumentParser:
     basic_group.add_argument(
         "--model_path",
         "-bmp",
+        "-mp",
         type=Path,
         default=None,
-        help=(
-            "Single BiMCUnet weight file (.pt). "
-            "If omitted, built-in model auto-selection is used by voxel size from model_weights/. default=None."
-        ),
+        help=argparse.SUPPRESS,
     )
     basic_group.add_argument(
         "--stride",
         "-bs",
+        "-s",
         type=int,
         default=16,
         help=(
@@ -108,13 +107,15 @@ def build_parser() -> argparse.ArgumentParser:
     basic_group.add_argument(
         "--batch_size",
         "-bb",
+        "-b",
         type=int,
         default=16,
-        help="Batch size (number of patches per forward pass). default=16.",
+        help="Batch size (number of patches per forward pass). A100 40GB GPU recommended batch size=128. default=16.",
     )
     basic_group.add_argument(
         "--gpu_id",
         "-bg",
+        "-g",
         type=str,
         default="0",
         help=(
@@ -127,27 +128,21 @@ def build_parser() -> argparse.ArgumentParser:
         "-bbm",
         choices=("uniform", "gaussian"),
         default="gaussian",
-        help=(
-            "Patch aggregation weighting mode. "
-            "'uniform' preserves original EMReady2 behavior; 'gaussian' uses center-weighted fusion. "
-            "default=gaussian."
-        ),
+        help=argparse.SUPPRESS,
     )
     basic_group.add_argument(
         "--gaussian_sigma_scale",
         "-bgs",
         type=float,
         default=0.5,
-        help=(
-            "Gaussian sigma scale for patch fusion when --blend_mode=gaussian. "
-            "must be >0. default=0.5."
-        ),
+        help=argparse.SUPPRESS,
     )
 
     mask_group = parser.add_argument_group("Mask Arguments")
     mask_group.add_argument(
         "--mask_map",
         "-mm",
+        "-m",
         type=Path,
         default=None,
         help=(
@@ -158,6 +153,7 @@ def build_parser() -> argparse.ArgumentParser:
     mask_group.add_argument(
         "--mask_contour",
         "-mc",
+        "-c",
         type=float,
         default=0.0,
         help=(
@@ -168,6 +164,7 @@ def build_parser() -> argparse.ArgumentParser:
     mask_group.add_argument(
         "--mask_str",
         "-ms",
+        "-p",
         type=Path,
         default=None,
         help=(
@@ -178,6 +175,7 @@ def build_parser() -> argparse.ArgumentParser:
     mask_group.add_argument(
         "--mask_str_radius",
         "-mr",
+        "-r",
         type=float,
         default=4.0,
         help="Mask radius in Angstrom when --mask_str is used. default=4.0.",
@@ -191,8 +189,6 @@ def build_parser() -> argparse.ArgumentParser:
     )
     mask_group.add_argument(
         "--inverse_mask",
-        "--inverse",
-        "-mi",
         action="store_true",
         default=False,
         help="Invert mask keep/remove logic for --mask_map or --mask_str. default=False.",
@@ -241,7 +237,7 @@ def choose_apix_and_weight(in_map: Path, model_path: Path | None) -> tuple[float
     names = ", ".join(DEFAULT_MODEL_FILES[apix])
     raise FileNotFoundError(
         f"No default model weight found for apix={apix} in {model_dir}. "
-        f"Expected one of: {names}. Use --model_path/-bmp to pass a weight file."
+        f"Expected one of: {names}. Please check the model_weights/ directory."
     )
 
 
