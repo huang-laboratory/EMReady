@@ -1,2 +1,0 @@
-"""Shared utility helpers."""
-
