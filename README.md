@@ -1,4 +1,6 @@
-# EMReady2
+# EMReady v2.1.0
+
+All historical versions and downloadable assets can be found on the project Releases page.
 
 ## 📄 Overview
 
@@ -13,38 +15,6 @@ Copyright (C) 2025 Hong Cao, Yueting Zhu, Tao Li, Ji Chen, Jiahua He, Xinggang W
 <img src='assets/workflow.jpg' width='800'>
 
 
-## 🔄 Updates
-
-<details>
-   <summary>2026/03/02. Compatibility update for torch and mamba.</summary>
-
-EMReady2 was updated to fix the compatibility issues between torch and mamba.
-Specifically, the runtime environment was upgraded from torch 2.3 to torch 2.4.1.
-</details>
-
-<details>
-   <summary>2026/05/01. Simplified installation and added Gaussian post-processing.</summary>
-
-The installation workflow was simplified from the old shell-script based usage to
-an installable Python package workflow in a conda environment.
-
-Gaussian post-processing was added as the default patch aggregation method.
-On the EMReady2 118 cryo-EM test set, the comparison is as follows:
-
-```text
-methods     mfsc0.5   umfsc0.5   qscore   ccbox   ccmask   ccpeaks   qscore_mc
-average     4.589     4.647      0.493    0.859   0.748    0.717     0.557
-gaussian    4.543     4.601      0.494    0.861   0.750    0.720     0.558
-```
-</details>
-
-<details>
-	<summary>2026/06/30. Improved the readability of the main program.</summary>
-
-Make the options parameter of EMReady2 compatible with the same usage as that of EMReady.
-</details>
-
-
 ## ✨ Requirements
 
 **Platform**: Linux (Mainly tested on CentOS 7 and Ubuntu).
@@ -57,11 +27,11 @@ Make the options parameter of EMReady2 compatible with the same usage as that of
 ## ⚡ Installation
 
 <details>
-	<summary>1. Download EMReady2</summary>
+	<summary>1. Download EMReady</summary>
 
 ```bash
-git clone https://github.com/huang-laboratory/EMReady2.git
-cd EMReady2
+git clone https://github.com/huang-laboratory/EMReady.git
+cd EMReady
 ```
 </details>
 
@@ -122,9 +92,9 @@ pip install mamba_ssm-2.2.0_xxx.whl
 </details>
 
 <details>
-	<summary>5. Install EMReady2</summary>
+	<summary>5. Install EMReady</summary>
 
-EMReady2 is now used as an installable Python package in the conda environment:
+EMReady is now used as an installable Python package in the conda environment:
 ```bash
 pip install -e . --no-deps
 ```
@@ -149,7 +119,7 @@ model_weights/model_1p0.pt
 
 ## 🎯 Usage
 
-Running EMReady2 is straightforward with one command like
+Running EMReady is straightforward with one command like
 ```bash
 emready in_map.mrc out_map.mrc [Options]
 ```
@@ -157,18 +127,18 @@ emready in_map.mrc out_map.mrc [Options]
 Required arguments:
 ```
 in_map.mrc:   File name of input EM density map in MRC2014 format.
-out_map.mrc:  File name of the output EMReady2-processed density map.
+out_map.mrc:  File name of the output EMReady-processed density map.
 ```
 
 Common options:
 ```
 -g GPU_ID:  ID(s) of GPU devices to use. e.g. '0' for GPU #0, and '2,3,6' for GPUs #2, #3, and #6. (default: '0')
 -s STRIDE:  The step of the sliding window for cutting the input map into overlapping boxes. Its value should be an integer within [6,64]. (default: 16)
--b BATCH_SIZE:  Number of boxes input into EMReady2 in one batch. (default: 16)
--m, -mm MASK_MAP:  Input mask map in MRC2014 format. (default: None)
--c, -mc MASK_MAP_CONTOUR:  Set the contour level of the mask. (default: 0.0)
--p, -ms MASK_STRUCTURE:  Input structure mask files in PDB or CIF format. (default: None)
--r, -mr MASK_STRUCTURE_RADIUS:  Zone radius in angstroms. (default: 4.0)
+-b BATCH_SIZE:  Number of boxes input into EMReady in one batch. (default: 16)
+-m/-mm MASK_MAP:  Input mask map in MRC2014 format. (default: None)
+-c/-mc MASK_MAP_CONTOUR:  Set the contour level of the mask. (default: 0.0)
+-p/-ms MASK_STRUCTURE:  Input structure mask files in PDB or CIF format. (default: None)
+-r/-mr MASK_STRUCTURE_RADIUS:  Zone radius in angstroms. (default: 4.0)
 -mo MASK_OUT_PATH:  File path of the output binary mask map. (default: None)
 --inverse_mask:  Invert mask keep/remove logic for --mask_map or --mask_str. (default: False)
 ```
@@ -183,8 +153,40 @@ emready input.mrc output.mrc -p struct.pdb -r 4.0 --inverse_mask
 
 ## 🔥 Trouble shooting
 
-- **model weights:** If EMReady2 reports that no default model weight is found, please check that the downloaded files are placed at
+- **model weights:** If EMReady reports that no default model weight is found, please check that the downloaded files are placed at
   `model_weights/model_0p6.pt` and `model_weights/model_1p0.pt`.
+
+
+## 🔄 Updates
+
+<details>
+   <summary>2026/03/02. Compatibility update for torch and mamba.</summary>
+
+EMReady2 was updated to fix the compatibility issues between torch and mamba.
+Specifically, the runtime environment was upgraded from torch 2.3 to torch 2.4.1.
+</details>
+
+<details>
+   <summary>2026/05/01. Simplified installation and added Gaussian post-processing.</summary>
+
+The installation workflow was simplified from the old shell-script based usage to
+an installable Python package workflow in a conda environment.
+
+Gaussian post-processing was added as the default patch aggregation method.
+On the EMReady2 118 cryo-EM test set, the comparison is as follows:
+
+```text
+methods     mfsc0.5   umfsc0.5   qscore   ccbox   ccmask   ccpeaks   qscore_mc
+average     4.589     4.647      0.493    0.859   0.748    0.717     0.557
+gaussian    4.543     4.601      0.494    0.861   0.750    0.720     0.558
+```
+</details>
+
+<details>
+	<summary>2026/06/30. Improved the readability of the main program.</summary>
+
+Make the options parameter of EMReady2 compatible with the same usage as that of EMReady.
+</details>
 
 
 ## 📝 Citation
