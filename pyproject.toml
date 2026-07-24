@@ -19,7 +19,7 @@ classifiers = [
 ]
 
 [project.scripts]
-emready = "emready.commands.predict:main"
+emready = "emready.commands.cli:main"
 
 [tool.setuptools.dynamic]
 version = {attr = "emready.__version__"}
