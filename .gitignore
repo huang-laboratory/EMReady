@@ -1,7 +1,17 @@
 __pycache__/
 *.py[cod]
+*$py.class
+
+# packaging / editable install artifacts (pip install -e .)
 *.egg-info/
 *.egg
+.eggs/
+build/
+dist/
+wheels/
+pip-wheel-metadata/
+*.manifest
+*.spec
 
 model_weights/model_0p6.pt
 model_weights/model_1p0.pt
