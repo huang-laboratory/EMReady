@@ -1,4 +1,4 @@
-# EMReady v2.1.0
+# EMReady v2.1.1
 
 All historical versions and downloadable assets can be found on the project Releases page.
 
@@ -113,24 +113,32 @@ http://huanglab.phys.hust.edu.cn/EMReady2
 ```bash
 model_weights/model_0p6.pt
 model_weights/model_1p0.pt
+model_weights/model_ligand_v0.pt
 ```
 </details>
 
 
 ## 🎯 Usage
 
+### main command
+
 Running EMReady is straightforward with one command like
 ```bash
 emready in_map.mrc out_map.mrc [Options]
 ```
 
-Required arguments:
+<details>
+	<summary>Required arguments:</summary>
+
 ```
 in_map.mrc:   File name of input EM density map in MRC2014 format.
 out_map.mrc:  File name of the output EMReady-processed density map.
 ```
+</details>
 
-Common options:
+<details>
+	<summary>Common options:</summary>
+
 ```
 -g GPU_ID:  ID(s) of GPU devices to use. e.g. '0' for GPU #0, and '2,3,6' for GPUs #2, #3, and #6. (default: '0')
 -s STRIDE:  The step of the sliding window for cutting the input map into overlapping boxes. Its value should be an integer within [6,64]. (default: 16)
@@ -142,19 +150,68 @@ Common options:
 -mo MASK_OUT_PATH:  File path of the output binary mask map. (default: None)
 --inverse_mask:  Invert mask keep/remove logic for --mask_map or --mask_str. (default: False)
 ```
+</details>
 
-Examples:
+<details>
+	<summary>Examples:</summary>
+
 ```bash
 emready input.mrc output.mrc -g 0 -b 128 -s 16
 emready input.mrc output.mrc -m mask.mrc -c 0.5
 emready input.mrc output.mrc -p struct.pdb -r 4.0 --inverse_mask
 ```
+</details>
+
+### ligand command
+
+Predict ligand density maps from an experimental density map with
+```bash
+emready ligand in_map.mrc out_dir [Options]
+```
+
+<details>
+	<summary>Required arguments:</summary>
+
+```
+in_map.mrc:  File name of input EM density map in MRC2014 format.
+out_dir:     Output directory for ligand maps.
+```
+</details>
+
+<details>
+	<summary>Output files:</summary>
+
+```
+ligand.mrc:       Ligand density map (similarity weighted by ligand-class probability).
+ligand_mask.mrc:  Binary ligand mask (1 for ligand voxels, 0 otherwise).
+```
+</details>
+
+<details>
+	<summary>Common options:</summary>
+
+```
+-g GPU_ID:  ID(s) of GPU devices to use. e.g. '0' for GPU #0, and '2,3,6' for GPUs #2, #3, and #6. (default: '0')
+-s STRIDE:  The step of the sliding window for cutting the input map into overlapping boxes. Its value should be an integer within [16,48]. (default: 16)
+-b BATCH_SIZE:  Number of boxes input into EMReady in one batch. (default: 8)
+```
+</details>
+
+<details>
+	<summary>Examples:</summary>
+
+```bash
+emready ligand input.mrc out_dir -g 0 -b 8 -s 16
+emready ligand -i input.mrc -o out_dir -g 0
+```
+</details>
 
 
 ## 🔥 Trouble shooting
 
 - **model weights:** If EMReady reports that no default model weight is found, please check that the downloaded files are placed at
   `model_weights/model_0p6.pt` and `model_weights/model_1p0.pt`.
+  For the ligand command, also place `model_weights/model_ligand_v0.pt`.
 
 
 ## 🔄 Updates
@@ -186,6 +243,14 @@ gaussian    4.543     4.601      0.494    0.861   0.750    0.720     0.558
 	<summary>2026/06/30. Improved the readability of the main program.</summary>
 
 Make the options parameter of EMReady2 compatible with the same usage as that of EMReady.
+</details>
+
+<details>
+	<summary>2026/07/24. Added ligand density prediction.</summary>
+
+EMReady was updated to v2.1.1 with a new `emready ligand` command for ligand density
+prediction from experimental maps. The ligand model weight file is
+`model_weights/model_ligand_v0.pt`.
 </details>
 
 
