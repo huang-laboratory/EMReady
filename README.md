@@ -265,4 +265,15 @@ If you find our work useful, please cite our related paper:
 	year = {2026},
 	doi = {https://doi.org/10.1038/s41467-026-71794-1},
 }
+
+@article{EMReady,
+	title = {Improvement of cryo-EM maps by simultaneous local and non-local deep learning},
+	author = {He J, Li T, Huang SY},
+	journal = {Nature communications},
+	year = {2023},
+	volume = {14},
+	number = {1},
+	pages = {3217},
+	doi = {10.1038/s41467-023-39031-1}
+}
 ```
