@@ -1,18 +1,11 @@
-"""Top-level EMReady CLI dispatcher."""
+"""Top-level EMReady CLI entry for the main map-enhancement command."""
 
 from __future__ import annotations
 
-import sys
+from emready.commands.predict import main as predict_main
 
 
-def main(argv: list[str] | None = None) -> int:
-    argv = list(sys.argv[1:] if argv is None else argv)
-    if argv and argv[0] == "ligand":
-        from emready.commands.ligand import main as ligand_main
-
-        return ligand_main(argv[1:])
-    from emready.commands.predict import main as predict_main
-
+def main(argv=None) -> int:
     return predict_main(argv)
 
 

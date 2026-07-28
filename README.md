@@ -120,7 +120,7 @@ model_weights/model_ligand_v0.pt
 
 ## 🎯 Usage
 
-### main command
+### 1. main command
 
 Running EMReady is straightforward with one command like
 ```bash
@@ -162,11 +162,11 @@ emready input.mrc output.mrc -p struct.pdb -r 4.0 --inverse_mask
 ```
 </details>
 
-### ligand command
+### 2. ligand detection
 
 Predict ligand density maps from an experimental density map with
 ```bash
-emready ligand in_map.mrc out_dir [Options]
+emready.ligand in_map.mrc out_dir [Options]
 ```
 
 <details>
@@ -201,8 +201,8 @@ ligand_mask.mrc:  Binary ligand mask (1 for ligand voxels, 0 otherwise).
 	<summary>Examples:</summary>
 
 ```bash
-emready ligand input.mrc out_dir -g 0 -b 8 -s 16
-emready ligand -i input.mrc -o out_dir -g 0
+emready.ligand input.mrc out_dir -g 0 -b 8 -s 16
+emready.ligand -i input.mrc -o out_dir -g 0
 ```
 </details>
 
@@ -248,7 +248,7 @@ Make the options parameter of EMReady2 compatible with the same usage as that of
 <details>
 	<summary>2026/07/24. Added ligand density prediction.</summary>
 
-EMReady was updated to v2.1.1 with a new `emready ligand` command for ligand density
+EMReady was updated to v2.1.1 with a new `emready.ligand` command for ligand density
 prediction from experimental maps. The ligand model weight file is
 `model_weights/model_ligand_v0.pt`.
 </details>
