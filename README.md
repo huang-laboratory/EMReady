@@ -120,7 +120,7 @@ model_weights/model_ligand_v0.pt
 
 ## 🎯 Usage
 
-### 1. main command
+### 1. Main command
 
 Running EMReady is straightforward with one command like
 ```bash
@@ -162,7 +162,7 @@ emready input.mrc output.mrc -p struct.pdb -r 4.0 --inverse_mask
 ```
 </details>
 
-### 2. ligand detection
+### 2. Ligand detection
 
 Predict ligand density maps from an experimental density map with
 ```bash
