@@ -20,6 +20,7 @@ classifiers = [
 
 [project.scripts]
 emready = "emready.commands.cli:main"
+"emready.ligand" = "emready.commands.ligand:main"
 
 [tool.setuptools.dynamic]
 version = {attr = "emready.__version__"}

@@ -43,7 +43,7 @@ def resolve_default_weight_path() -> Path:
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
-        prog="emready ligand",
+        prog="emready.ligand",
         description="EMReady ligand density inference (experimental map -> ligand maps).",
         formatter_class=argparse.RawTextHelpFormatter,
     )
