@@ -121,7 +121,7 @@ model_weights/model_main_chain_v0.pt
 
 ## 🎯 Usage
 
-### 1. Main command
+### 1. Main command: General map improvement
 
 Running EMReady is straightforward with one command like
 ```bash
