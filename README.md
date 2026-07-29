@@ -1,5 +1,7 @@
 # EMReady v2.1.2
 
+EMReady is a software suite for improvment and annotation of cryo-EM maps using deep learning.
+
 All historical versions and downloadable assets can be found on the project Releases page.
 
 ## 📄 Overview
