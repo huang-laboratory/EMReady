@@ -9,8 +9,10 @@ Expected filenames:
 - `model_weights/model_0p6.pt`
 - `model_weights/model_1p0.pt`
 - `model_weights/model_ligand_v0.pt`
+- `model_weights/model_main_chain_v0.pt`
 
 The `emready` main command automatically selects `model_0p6.pt` or `model_1p0.pt`
 from the input map voxel size when `--model_path` / `-bmp` is not provided.
 
 The `emready.ligand` command uses `model_ligand_v0.pt` by default.
+The `emready.main_chain` command uses `model_main_chain_v0.pt` by default.

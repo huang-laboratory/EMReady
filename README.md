@@ -1,4 +1,6 @@
-# EMReady v2.1.1
+# EMReady v2.1.2
+
+EMReady is a software suite for improvment and annotation of cryo-EM maps using deep learning.
 
 All historical versions and downloadable assets can be found on the project Releases page.
 
@@ -10,9 +12,7 @@ EMReady2: Improvement of cryo-EM and cryo-ET maps by local quality-aware deep le
 
 <a href="https://pytorch.org/"><img src="https://img.shields.io/badge/PyTorch-v2.4.1-red?logo=PyTorch&style=for-the-badge"/></a>   <a href="https://developer.nvidia.com/cuda-toolkit"><img src="https://img.shields.io/badge/CUDA-v11.8-green?logo=Nvidia&style=for-the-badge"/></a>   <a href="https://python.org"><img src="https://img.shields.io/badge/python-v3.10-blue?logo=python&style=for-the-badge"/></a>
 
-Copyright (C) 2025 Hong Cao, Yueting Zhu, Tao Li, Ji Chen, Jiahua He, Xinggang Wang, Sheng-You Huang and Huazhong University of Science and Technology
-
-<img src='assets/workflow.jpg' width='800'>
+<img src='assets/workflow_emready2_a.jpg' width='800'>
 
 
 ## ✨ Requirements
@@ -114,13 +114,14 @@ http://huanglab.phys.hust.edu.cn/EMReady2
 model_weights/model_0p6.pt
 model_weights/model_1p0.pt
 model_weights/model_ligand_v0.pt
+model_weights/model_main_chain_v0.pt
 ```
 </details>
 
 
 ## 🎯 Usage
 
-### 1. Main command
+### 1. Main command: General map improvement
 
 Running EMReady is straightforward with one command like
 ```bash
@@ -206,12 +207,57 @@ emready.ligand -i input.mrc -o out_dir -g 0
 ```
 </details>
 
+### 3. Main chain prediction and structure class annotation
+
+Predict main-chain density and segment structure classes from an experimental density map with
+```bash
+emready.main_chain in_map.mrc out_dir [Options]
+```
+
+<details>
+	<summary>Required arguments:</summary>
+
+```
+in_map.mrc:  File name of input EM density map in MRC2014 format.
+out_dir:     Output directory for main-chain maps.
+```
+</details>
+
+<details>
+	<summary>Output files:</summary>
+
+```
+main_chain.mrc:        Main-chain density map.
+main_chain_class.mrc:  Structure class annotation map (0/1/2 for background/protein/nucleic acid).
+```
+</details>
+
+<details>
+	<summary>Common options:</summary>
+
+```
+-g GPU_ID:  ID(s) of GPU devices to use. (default: '0')
+-s STRIDE:  Sliding-window stride. integer within [16,48]. (default: 32)
+-b BATCH_SIZE:  Number of boxes per batch. (default: 8)
+```
+</details>
+
+<details>
+	<summary>Examples:</summary>
+
+```bash
+emready.main_chain input.mrc out_dir -g 0 -b 8 -s 32
+emready.main_chain -i input.mrc -o out_dir -g 0
+```
+</details>
+
 
 ## 🔥 Trouble shooting
 
 - **model weights:** If EMReady reports that no default model weight is found, please check that the downloaded files are placed at
   `model_weights/model_0p6.pt` and `model_weights/model_1p0.pt`.
   For the ligand command, also place `model_weights/model_ligand_v0.pt`.
+  For the main_chain command, also place `model_weights/model_main_chain_v0.pt`.
 
 
 ## 🔄 Updates
@@ -251,6 +297,15 @@ Make the options parameter of EMReady2 compatible with the same usage as that of
 EMReady was updated to v2.1.1 with a new `emready.ligand` command for ligand density
 prediction from experimental maps. The ligand model weight file is
 `model_weights/model_ligand_v0.pt`.
+</details>
+
+<details>
+	<summary>2026/07/29. Added main-chain prediction and structure class annotation.</summary>
+
+EMReady was updated to v2.1.2 with a new `emready.main_chain` command for joint
+main-chain density prediction and structure class annotation (0/1/2 for
+background/protein/nucleic acid) from experimental maps. The main-chain model
+weight file is `model_weights/model_main_chain_v0.pt`.
 </details>
 
 

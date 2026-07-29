@@ -16,3 +16,4 @@ pip-wheel-metadata/
 model_weights/model_0p6.pt
 model_weights/model_1p0.pt
 model_weights/model_ligand_v0.pt
+model_weights/model_main_chain_v0.pt
