@@ -10,9 +10,7 @@ EMReady2: Improvement of cryo-EM and cryo-ET maps by local quality-aware deep le
 
 <a href="https://pytorch.org/"><img src="https://img.shields.io/badge/PyTorch-v2.4.1-red?logo=PyTorch&style=for-the-badge"/></a>   <a href="https://developer.nvidia.com/cuda-toolkit"><img src="https://img.shields.io/badge/CUDA-v11.8-green?logo=Nvidia&style=for-the-badge"/></a>   <a href="https://python.org"><img src="https://img.shields.io/badge/python-v3.10-blue?logo=python&style=for-the-badge"/></a>
 
-Copyright (C) 2025 Hong Cao, Yueting Zhu, Tao Li, Ji Chen, Jiahua He, Xinggang Wang, Sheng-You Huang and Huazhong University of Science and Technology
-
-<img src='assets/workflow.jpg' width='800'>
+<img src='assets/workflow_emready2_a.jpg' width='800'>
 
 
 ## ✨ Requirements
