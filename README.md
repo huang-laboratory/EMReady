@@ -207,7 +207,7 @@ emready.ligand -i input.mrc -o out_dir -g 0
 ```
 </details>
 
-### 3. main_chain prediction and structure class annotation
+### 3. Main chain prediction and structure class annotation
 
 Predict main-chain density and segment structure classes from an experimental density map with
 ```bash
